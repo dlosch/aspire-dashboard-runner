@@ -1,2 +1,1 @@
-# utils
-Utilities for .NET development
+# utilities for .NET development
