@@ -64,11 +64,6 @@ if ($IsWindows -or ($PSVersionTable.PSVersion.Major -lt 6 -and [Environment]::OS
 $dashboardExeDir = "$versionedOutputDir/tools"
 $dashboardExePath = "./Aspire.Dashboard$exeExtension"
 
-# Create base directory if needed
-if (-not (Test-Path $baseOutputDir)) {
-    New-Item -ItemType Directory -Path $baseOutputDir -Force | Out-Null
-}
-
 #
 # 5. Download and extract package if needed
 #
@@ -96,6 +91,10 @@ if (Test-Path $systemPackagePath) {
 } elseif (Test-Path $dashboardExeDir) {
     Write-Host "Version $nugetVersion already downloaded. Skipping download." -ForegroundColor Green
 } else {
+    # Create base directory if needed
+    if (-not (Test-Path $baseOutputDir)) {
+        New-Item -ItemType Directory -Path $baseOutputDir -Force | Out-Null
+    }
     Write-Host "Downloading version $nugetVersion..." -ForegroundColor Yellow
     
     # Create versioned directory
