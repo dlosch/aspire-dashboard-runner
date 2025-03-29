@@ -72,7 +72,28 @@ if (-not (Test-Path $baseOutputDir)) {
 #
 # 5. Download and extract package if needed
 #
-if (Test-Path $dashboardExeDir) {
+# Resolve the NuGet package directory
+if ($env:NUGET_PACKAGES) {
+    # Use the NUGET_PACKAGES environment variable if set
+    $nugetGlobalPackagesDir = $env:NUGET_PACKAGES
+} else {
+    # Default to the user's global NuGet packages directory
+    if ($IsWindows) {
+        $nugetGlobalPackagesDir = Join-Path -Path ([System.Environment]::GetFolderPath("UserProfile")) -ChildPath ".nuget\packages"
+    } else {
+        $nugetGlobalPackagesDir = "~/.nuget/packages"
+    }
+}
+
+# Construct the path to the package in the NuGet directory
+$systemPackagePath = Join-Path -Path $nugetGlobalPackagesDir -ChildPath "$nugetPackageName/$nugetVersion"
+
+if (Test-Path $systemPackagePath) {
+    Write-Host "Package $nugetPackageName version $nugetVersion found in NuGet directory ($nugetGlobalPackagesDir). Skipping download." -ForegroundColor Green
+
+    $dashboardExeDir = Join-Path -Path $systemPackagePath -ChildPath "tools"
+
+} elseif (Test-Path $dashboardExeDir) {
     Write-Host "Version $nugetVersion already downloaded. Skipping download." -ForegroundColor Green
 } else {
     Write-Host "Downloading version $nugetVersion..." -ForegroundColor Yellow
