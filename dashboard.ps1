@@ -11,7 +11,7 @@ $dotnetInfo = dotnet --info
 $ridLine = $dotnetInfo | Where-Object { $_ -match 'RID:' }
 $rid = $ridLine -replace 'RID:\s+', ''
 $rid = $rid.Trim()
-$nugetPackageName = "Aspire.Dashboard.Sdk.$rid"
+$nugetPackageName = "Aspire.Dashboard.Sdk.$rid".tolower()
 
 #
 # 2. Helper function to determine latest package version
@@ -23,7 +23,6 @@ function Get-LatestNuGetPackageVersion {
     
     # should technically be tolower!?
     $indexUrl = "https://api.nuget.org/v3-flatcontainer/$PackageName/index.json"
-    
     try {
         $response = Invoke-RestMethod -Uri $indexUrl -Method Get
         if ($response.versions -and $response.versions.Count -gt 0) {
