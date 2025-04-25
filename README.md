@@ -1,4 +1,7 @@
 ## dashboard.ps1
+
+**TLDR** This script runs the aspire dashboard locally directly from its nuget package.
+
 The aspire dashboard is probably the easiest way to surface OpenTelemetry data (logs, traces, metrics) in dev environments. It is published as a docker image. When you run an aspire orchestration locally, the dashboard is ***not*** run via docker but executed directly from a nuget package which contains the dashboard executable (on x64 Windows: Aspire.Dashboard.Sdk.win-x64). These packages are published per runtime identifier (the x64 Windows aspire dashboard is a separate nuget from the arm64 OSX package).
 
 An additional advantage of using the nuget over the docker image is that the docker image is usually published later than the nuget (in case of the current version 9.1.0, the docker image was published weeks later).
