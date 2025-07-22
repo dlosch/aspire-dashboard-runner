@@ -1,6 +1,7 @@
 ## dashboard.ps1
 
 **TLDR** This script runs the aspire dashboard locally directly from its nuget package.
+
 **TLDR-2** Created this before dnx existed. In .NET 10, you should be able to use dnx/dotnet tool exec plus a wrapper to set environment variables for similar logic.
 
 The aspire dashboard is probably the easiest way to surface OpenTelemetry data (logs, traces, metrics) in dev environments. It is published as a docker image. When you run an aspire orchestration locally, the dashboard is ***not*** run via docker but executed directly from a nuget package which contains the dashboard executable (on x64 Windows: Aspire.Dashboard.Sdk.win-x64). These packages are published per runtime identifier (the x64 Windows aspire dashboard is a separate nuget from the arm64 OSX package).
