@@ -133,6 +133,10 @@ $env:DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS = "True"
 Push-Location -Path $dashboardExeDir
 try {
     if (Test-Path $dashboardExePath) {
+        if (! $IsWindows) {
+            # Make the executable runnable on non-Windows platforms
+            chmod +x $dashboardExePath
+        }
         & $dashboardExePath
     } 
     else {
