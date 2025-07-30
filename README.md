@@ -13,7 +13,7 @@ This script runs the current (published) version of the aspire dashboard. The da
 Script
 - retrieves the local *rid*
 - retrieves the most recent version number of this nuget package
-- checks the local system nuget package folder if that nuget package and the version exists. If it exists, it will execute the dashboard from the tools directory of this nuget package
+- checks the local system nuget package folder if that nuget package and the version exists. If it exists, it will execute the dashboard from the tools directory of this nuget package. Script does honor NUGET_PACKAGES environment variable (it does not check for NuGet.config).
 - if the package is not found, it donwloads and extracts the nuget to a local folder relative to the script (package is not installed in the system wide nuget packages folder).
 - sets environment variables for the dashboard:
     ```
