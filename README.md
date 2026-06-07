@@ -6,7 +6,7 @@ You can run it using **dnx**: **dnx -y aspire.cli dashboard run**.
 
 Note: The aspire.cli nuget is way larger (at least twice the size, >100 MiB) than the dashboard itself. The aspire.dashboard.sdk.*rid* nugets will be obsoleted in the future.
 
-Note: *the dashboard can still be used without aspire. It can collect and surface OTel (logs, traces, metrics).*
+Note: *the dashboard can still be used without aspire. It can collect and surface OTel (logs, traces, metrics) from any app - no dependency on .NET or aspire.*
 
 ## dashboard.ps1 script
 
