@@ -1,5 +1,15 @@
 ## dashboard.ps1
 
+**(kind of) obsolete** As of May 2026, Microsoft has merged the aspire dashboard with the **aspire.cli** nuget package, which ***is*** packaged as a dotnet tool (*that took way longer than necessary ;)* ). 
+
+You can run it using **dnx**: **dnx -y aspire.cli dashboard run**. 
+
+Note: The aspire.cli nuget is way larger (at least twice the size, >100 MiB) than the dashboard itself. The aspire.dashboard.sdk.*rid* nugets will be obsoleted in the future.
+
+Note: *the dashboard can still be used without aspire. It can collect and surface OTel (logs, traces, metrics).*
+
+## dashboard.ps1 script
+
 **TLDR** This script runs the aspire dashboard locally directly from its NuGet package.
 
 **TLDR-2** Created this before dnx existed. AFAIK, dnx doesn't execute the dashboard as the dashboard NuGet is not packaged as a dotnet tool.
